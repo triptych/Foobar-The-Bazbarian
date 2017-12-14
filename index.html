@@ -1,0 +1,279 @@
+
+<HEAD>
+<TITLE>FOOBAR! The Bazbarian</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" onLoad="initgame()">
+
+<script language="JavaScript">
+<!-- The Engine
+//variable declarations
+var mylocation="0"
+var locDesc= new StringArray(16)
+var zero=0
+var bonus="10"
+
+locDesc[0]='You are standing at the edge of a small island. Palm trees sprout everywhere and obscure your view to the East and South. The beach is bordered on the North and West'
+locDesc[1]='The beach is to the West. You see the remains of your wrecked ship here. The forest is to the East and the beach goes North and South.'
+locDesc[2]='The beach is West of you. At the edge of the forest stands a silver cage with a beautiful princess who becons for you to unlock the cage.'
+locDesc[3]='The beach laps at you from the West and South. The palm trees to the North and East sway in the wind. You hear screaming to the North.'
+locDesc[4]='The ocean borders the North. On the beach you see empty coke cans and various other washed up trash. '
+locDesc[5]='You are surrounded by palm trees.  A monkey waves a you. You hear screaming to the South.'
+locDesc[6]='In a clearing, you see a golden cage with a georgeous princess waving at you. She begs you to find the key and let her free.'
+locDesc[7]='The beach borders to the South. There are graves here with names of other warriors like yourself who failed...'
+locDesc[8]='The beach borders the North end of the island. The wind blows fiercer here.'
+locDesc[9]='You are in the midst of palms.  Footprints dot the sand in all directions.'
+locDesc[10]='A woman screams to the West. Sharp rocks hurt your bare feet as you wander...'
+locDesc[11]='The beach borders the Southern end of the island.  You hear a strange sound to the East, like a storm in the distance.'
+locDesc[12]='You see a chest full of gold, jewels and many other things. Your search reveals....'
+locDesc[13]='The beach stops you short to East. There are the remains of a campfire here.'
+locDesc[14]='Bones litter the beach to the East.  They look human. You hear a sound like rushing wind to the South. Palms trees obscure your view.'
+locDesc[15]='A large green Dragon turns to look at you as you enter the clearing.  Its growl is like a Mac Truck stuck in high gear.'
+
+// functions
+
+function StringArray (n) {
+	this.length = n;
+	for (var i = 1; i <= n; i++) {
+		this[i] = ''
+		}
+	return this
+}	
+
+
+
+function initgame(){
+	var intro = "Welcome to Foobar the Bazbarian! \r\nClick on buttons to navigate\r\nClick RESET to start over\r"
+	
+	
+	document.forms[0].dialogbox.value=intro+locDesc[0]
+	document.forms[5].score.value=zero
+	document.forms[5].itemhere.value="None"
+	document.forms[5].your1.value="Empty"
+	document.forms[5].your2.value="Empty"
+	document.forms[5].your3.value="Empty"
+	document.forms[5].your4.value="Empty"
+	mylocation=0
+}
+
+function upscore(addscore){
+	oldscore=document.forms[5].score.value;
+	num1=parseFloat(addscore);
+	num2=parseFloat(oldscore);
+	newscore=num1 + num2;
+	
+	document.forms[5].score.value=newscore
+	}
+	
+	
+function changeLocation(index){
+	force=parseFloat(mylocation) + parseFloat(index);
+	mylocation=force;
+	
+	if (mylocation==0){
+		document.forms[0].dialogbox.value=locDesc[0];
+		document.forms[5].itemhere.value="None";
+		}
+	
+	if (mylocation==1){
+		document.forms[0].dialogbox.value=locDesc[1];
+		document.forms[5].itemhere.value="None";
+		}
+	
+	if (mylocation==2){
+		document.forms[0].dialogbox.value=locDesc[2];
+		document.forms[5].itemhere.value="None";
+		}
+	
+	if (mylocation==3){
+		document.forms[0].dialogbox.value=locDesc[3];
+		document.forms[5].itemhere.value="None";
+		}
+	
+	if (mylocation==10){
+		document.forms[0].dialogbox.value=locDesc[4];
+		document.forms[5].itemhere.value="None";
+		}
+	
+	if (mylocation==11){
+		document.forms[0].dialogbox.value=locDesc[5];
+		document.forms[5].itemhere.value="None";
+		}
+	
+	if (mylocation==12){
+		document.forms[0].dialogbox.value=locDesc[6];
+		document.forms[5].itemhere.value="None";
+		}
+	
+	if (mylocation==13){
+		document.forms[0].dialogbox.value=locDesc[7];
+		document.forms[5].itemhere.value="None";
+		}
+	
+	if (mylocation==20){
+		document.forms[0].dialogbox.value=locDesc[8];
+		document.forms[5].itemhere.value="None";
+		}
+	
+	if (mylocation==21){
+		document.forms[0].dialogbox.value=locDesc[9];
+		document.forms[5].itemhere.value="None";
+		}
+	
+	if (mylocation==22){
+		document.forms[0].dialogbox.value=locDesc[10];
+		document.forms[5].itemhere.value="None";
+		}
+	
+	if (mylocation==23){
+		document.forms[0].dialogbox.value=locDesc[11];
+		document.forms[5].itemhere.value="None";
+		}
+	
+	if (mylocation==30){
+		document.forms[0].dialogbox.value=locDesc[12];
+		document.forms[5].itemhere.value="Key";
+		}
+	
+	if (mylocation==31){
+		document.forms[0].dialogbox.value=locDesc[13];
+		document.forms[5].itemhere.value="None";
+		}
+	
+	if (mylocation==32){
+		document.forms[0].dialogbox.value=locDesc[14];
+		document.forms[5].itemhere.value="None";
+		}
+	
+	if (mylocation==33){
+		document.forms[0].dialogbox.value=locDesc[15];
+		document.forms[5].itemhere.value="None";
+		pit();
+		}
+	if (mylocation != 0 && mylocation != 1 && mylocation != 2 && mylocation != 3 &&
+		mylocation !=10 && mylocation !=11 && mylocation !=12 && mylocation !=13 &&
+		mylocation !=20 && mylocation !=21 && mylocation !=22 && mylocation !=23 &&
+		mylocation !=30 && mylocation !=31 && mylocation !=32 && mylocation !=33 )
+		{ 
+			alert ("You cant go there! The water blocks your way.");
+			mylocation=parseFloat(mylocation) - parseFloat(index);
+		}
+			
+			
+	//alert(force + " and location" + location);
+	}
+	
+function takeItem(){
+	if (document.forms[5].itemhere.value != "None") {
+		document.forms[5].your1.value=document.forms[5].itemhere.value;
+		upscore(bonus);
+		document.forms[5].itemhere.value = "None";
+		}
+	else {
+		alert("There's nothing here!")
+		}	
+	}
+
+function useItem(itemtouse) {
+		
+		if (itemtouse == "Key" && mylocation == 2) {
+		 document.forms[0].dialogbox.value="You Win!  The Princess gives you a big Kiss, and Hillary reluctantly returns you to the land of Bat....\rYAY!"
+		 upscore(1000);
+		 }
+		else {
+			if (itemtouse == "Key" && mylocation == 12) {
+				document.forms[0].dialogbox.value="You picked the wrong Princess. The Witch cackles as she shoots a bolt of flame at your head. You Die!"
+				document.forms[5].score.value=zero
+			}
+			else{
+		 		alert ("I cannot use that here");
+		 		}}
+ }	
+ 
+ function pit() {
+ 	document.forms[0].dialogbox.value=document.forms[0].dialogbox.value + "\rDid I forget to mention the Dragon? Oops.  This huge monster thunders up and takes a big bite out of your face. You die."
+				document.forms[5].score.value=zero
+			}
+ 	 		
+// end Functions
+
+// end The Engine -->
+</script>
+
+<h1 align=center>Foobar the Bazbarian! v0.02a</h1>
+<table border align=left>
+<tr>
+<td colspan=2>
+<form>
+<!-- form 0 -->
+<textarea rows="15" cols="50" name="dialogbox" wrap="virtual">
+</textarea>
+</form>
+<tr>
+<td>
+<h4 align="center">Movement</h4>
+<table border >
+<tr>
+<td></td>
+<td>
+<form>
+<!-- form 1 -->
+<input type="button" Value="North" Name="GoNorth" onClick="changeLocation(-1)">
+</form>
+</td>
+<td></td>
+<tr>
+<td>
+<form>
+<!-- form 2 -->
+<input type="button" Value="West" Name="GoWest" onClick="changeLocation(-10)">
+</form>
+</td>
+<td align=center><B>GO</B></td>
+<td>
+<form>
+<!-- form 3 -->
+<input type="button" Value="East" Name="GoEast" onClick="changeLocation(10)">
+</form>
+</td>
+<tr>
+<td>
+<tr>
+<td></td>
+<td>
+<form>
+<!-- form 4 -->
+<input type="button" Value="South" Name="GoSouth" onClick="changeLocation(1)">
+</form>
+</td>
+<td></td>
+</table>
+<td valign=top>
+<form>
+<!-- form 5 -->
+Your Score: <input type="text" name="score"><br>
+Items Here: <input type="text" name="itemhere"><br>
+Your Items:<br>
+<input type="text" name="your1"><input type="button" Value="USE" Name="use1" onClick="useItem(document.forms[5].your1.value)"><br>
+<input type="text" name="your2"><input type="button" Value="USE" Name="use2" onClick="useItem(document.forms[5].your2.value)"><br>
+<input type="text" name="your3"><input type="button" Value="USE" Name="use3" onClick="useItem(document.forms[5].your3.value)"><br>
+<input type="text" name="your4"><input type="button" Value="USE" Name="use4" onClick="useItem(document.forms[5].your4.value)"><br>
+<input type="button" Value="TAKE ITEM" name="takeme" onClick="takeItem()">
+<input type="button" Value="QUIT" name="quitme" onClick="history.go(-1)">
+<input type="button" Value="RESET" name="resetme" onClick="initgame()">
+</form>
+
+</table>
+<p>
+<font size="-1">Created and copyright Andrew Wooldridge(andrew@andrewwooldridge.com)</font><p>
+<hr align="50%">
+You are FOOBAR, the Bazbarian from the land of Bat.
+You and the Princess of Zfoeps have been kidnapped by the Wicked
+Witch Hillary. As a challenge, Hillary has imprisoned herself
+and the Princess in two cages.
+You must search this small island to free the Princess!
+Search around and find the key to unlock her cage.
+If you let out the wrong girl you die! If you
+free the Princess you win!
+Click RESET to Start. <br clear=left>
+</BODY>
+</HTML>
